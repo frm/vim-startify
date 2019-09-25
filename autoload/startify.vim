@@ -80,6 +80,12 @@ function! startify#insane_in_the_membrane(on_vimenter) abort
     setlocal statusline=\ startify
   endif
 
+let s:padding_top = get(g:, 'startify_padding_top', 0)
+
+for i in range(0, s:padding_top)
+  call append(line('$'), '')
+endfor
+
   " Must be global so that it can be read by syntax/startify.vim.
   let g:startify_header = exists('g:startify_custom_header')
         \ ? s:set_custom_section(g:startify_custom_header)
